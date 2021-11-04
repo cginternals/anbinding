@@ -33,6 +33,7 @@ extern const std::unordered_map<an::AnExtension, std::string> Meta_StringsByExte
 extern const std::unordered_map<an::AnExtension, std::set<std::string>> Meta_FunctionStringsByExtension;
 extern const std::map<Version, std::set<std::string>> Meta_FunctionStringsByVersion;
 
+extern const std::unordered_map<an::AnBitfield, std::string> Meta_StringsByAnBitfield;
 
 
 extern const std::array<std::unordered_map<std::string, an::AnBitfield>, 27> Meta_BitfieldsByStringMaps;

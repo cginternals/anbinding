@@ -252,6 +252,18 @@ public:
     */
     static const std::set<Version> & versions();
 
+    /**
+    *  @brief
+    *    Convert bitfield to symbol name string representation
+    *
+    *  @param[in] bitfield
+    *    The bitfield value
+    *
+    *  @return
+    *    The string representation of the value
+    */
+    static const std::string & getString(an::AnBitfield anbitfield);
+
 
     /**
     *  @brief

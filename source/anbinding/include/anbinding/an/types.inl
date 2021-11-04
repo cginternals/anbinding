@@ -115,3 +115,64 @@ ANBINDING_CONSTEXPR inline bool operator>=(std::underlying_type<AnEnum>::type a,
 
 
 } // namespace an
+
+
+namespace std
+{
+
+
+template<>
+struct hash<an::AnBitfield>
+{
+    std::size_t operator()(const an::AnBitfield & t) const
+    {
+        return hash<std::underlying_type<an::AnBitfield>::type>()(static_cast<std::underlying_type<an::AnBitfield>::type>(t));
+    }
+};
+
+
+} // namespace std
+
+
+namespace an
+{
+
+
+ANBINDING_CONSTEXPR inline AnBitfield operator|(const AnBitfield & a, const AnBitfield & b)
+{
+    return static_cast<AnBitfield>(static_cast<std::underlying_type<AnBitfield>::type>(a) | static_cast<std::underlying_type<AnBitfield>::type>(b));
+}
+
+inline AnBitfield & operator|=(AnBitfield & a, const AnBitfield & b)
+{
+    a = static_cast<AnBitfield>(static_cast<std::underlying_type<AnBitfield>::type>(a) | static_cast<std::underlying_type<AnBitfield>::type>(b));
+
+    return a;
+}
+
+ANBINDING_CONSTEXPR inline AnBitfield operator&(const AnBitfield & a, const AnBitfield & b)
+{
+    return static_cast<AnBitfield>(static_cast<std::underlying_type<AnBitfield>::type>(a) & static_cast<std::underlying_type<AnBitfield>::type>(b));
+}
+
+inline AnBitfield & operator&=(AnBitfield & a, const AnBitfield & b)
+{
+    a = static_cast<AnBitfield>(static_cast<std::underlying_type<AnBitfield>::type>(a) & static_cast<std::underlying_type<AnBitfield>::type>(b));
+
+    return a;
+}
+
+ANBINDING_CONSTEXPR inline AnBitfield operator^(const AnBitfield & a, const AnBitfield & b)
+{
+    return static_cast<AnBitfield>(static_cast<std::underlying_type<AnBitfield>::type>(a) ^ static_cast<std::underlying_type<AnBitfield>::type>(b));
+}
+
+inline AnBitfield & operator^=(AnBitfield & a, const AnBitfield & b)
+{
+    a = static_cast<AnBitfield>(static_cast<std::underlying_type<AnBitfield>::type>(a) ^ static_cast<std::underlying_type<AnBitfield>::type>(b));
+
+    return a;
+}
+
+
+} // namespace an

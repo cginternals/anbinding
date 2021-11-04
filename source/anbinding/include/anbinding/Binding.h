@@ -279,7 +279,7 @@ public:
     static Function<int64_t, an::AnDevice, an::AnDeviceProperty> DeviceGetProperty; ///< Wrapper for anDeviceGetProperty
     static Function<void, an::AnDevice, an::AnStatusFunc> DeviceSetStatusFunc; ///< Wrapper for anDeviceSetStatusFunc
     static Function<an::AnBounds, an::AnObject> GetBounds; ///< Wrapper for anGetBounds
-    static Function<an::AnError, int*, const an::char**> Init; ///< Wrapper for anInit
+    static Function<an::AnError, int*, const char**> Init; ///< Wrapper for anInit
     static Function<an::AnDevice, const char*> NewDevice; ///< Wrapper for anNewDevice
     static Function<void, an::AnDevice> SetCurrentDevice; ///< Wrapper for anSetCurrentDevice
     static Function<void> Shutdown; ///< Wrapper for anShutdown

@@ -53,7 +53,10 @@ const std::unordered_map<std::string, AnBitfield> Meta_BitfieldsByString_S{};
 
 const std::unordered_map<std::string, AnBitfield> Meta_BitfieldsByString_T{};
 
-const std::unordered_map<std::string, AnBitfield> Meta_BitfieldsByString_U{};
+const std::unordered_map<std::string, AnBitfield> Meta_BitfieldsByString_U =
+{
+    { "AN_UNUSED_BIT", static_cast<AnBitfield>(AnBitfield::AN_UNUSED_BIT) }
+};
 
 const std::unordered_map<std::string, AnBitfield> Meta_BitfieldsByString_V{};
 

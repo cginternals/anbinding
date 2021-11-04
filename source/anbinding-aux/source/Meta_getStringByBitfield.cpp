@@ -23,5 +23,15 @@ namespace anbinding { namespace aux
 {
 
 
+const std::string & Meta::getString(const AnBitfield anbitfield)
+{
+    const auto i = Meta_StringsByAnBitfield.find(anbitfield);
+    if (i != Meta_StringsByAnBitfield.end())
+    {
+        return i->second;
+    }
+    return none;
+}
+
 
 } } // namespace anbinding::aux

@@ -4,7 +4,7 @@
 #include <sstream>
 
 
-namespace eglbinding { namespace aux
+namespace anbinding { namespace aux
 {
 
 
@@ -18,4 +18,4 @@ std::string wrapString(const char * value)
 }
 
 
-} } // namespace eglbinding::aux
+} } // namespace anbinding::aux

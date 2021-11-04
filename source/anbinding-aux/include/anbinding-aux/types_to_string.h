@@ -21,6 +21,7 @@ ANBINDING_AUX_API std::ostream & operator<<(std::ostream & stream, const AnEnum 
 ANBINDING_AUX_API std::ostream & operator<<(std::ostream & stream, const AnError & value);
 ANBINDING_AUX_API std::ostream & operator<<(std::ostream & stream, const AnBool32 & value);
 ANBINDING_AUX_API std::ostream & operator<<(std::ostream & stream, const AnExtension & value);
+ANBINDING_AUX_API std::ostream & operator<<(std::ostream & stream, const AnBitfield & value);
 
 
 } // namespace an

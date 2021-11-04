@@ -80,6 +80,12 @@ std::ostream & operator<<(std::ostream & stream, const AnExtension & value)
     return stream;
 }
 
+std::ostream & operator<<(std::ostream & stream, const AnBitfield & value)
+{
+    stream << anbinding::aux::bitfieldString<AnBitfield>(value);
+    return stream;
+}
+
 
 } // namespace an
 
@@ -204,6 +210,18 @@ if (typeid(*value) == typeid(Value<const char *>))
     if (typeid(*value) == typeid(Value<an::_AnManagedObject *>))
     {
         return stream << *reinterpret_cast<const Value<an::_AnManagedObject *>*>(value);
+    }
+
+    
+    if (typeid(*value) == typeid(Value<an::AnBitfield>))
+    {
+        return stream << *reinterpret_cast<const Value<an::AnBitfield>*>(value);
+    }
+    
+    
+    if (typeid(*value) == typeid(Value<an::AnBitfield *>))
+    {
+        return stream << *reinterpret_cast<const Value<an::AnBitfield *>*>(value);
     }
 
     

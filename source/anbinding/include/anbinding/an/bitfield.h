@@ -13,8 +13,15 @@ namespace an
 {
 
 
+enum class AnBitfield : unsigned int
+{
+    AN_UNUSED_BIT = 0x00000000
+};
+
+
 // import bitfields to namespace
 
+ANBINDING_CONSTEXPR static const AnBitfield AN_UNUSED_BIT = AnBitfield::AN_UNUSED_BIT;
 
 
 } // namespace an

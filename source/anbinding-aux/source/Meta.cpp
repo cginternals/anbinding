@@ -1,21 +1,21 @@
 
-#include <eglbinding-aux/Meta.h>
+#include <anbinding-aux/Meta.h>
 
-#include <eglbinding/egl/bitfield.h>
-#include <eglbinding/egl/boolean.h>
-#include <eglbinding/egl/enum.h>
-#include <eglbinding/egl/extension.h>
+#include <anbinding/an/bitfield.h>
+#include <anbinding/an/boolean.h>
+#include <anbinding/an/enum.h>
+#include <anbinding/an/extension.h>
 
-#include <eglbinding/AbstractFunction.h>
-#include <eglbinding/Binding.h>
-#include <eglbinding/Version.h>
+#include <anbinding/AbstractFunction.h>
+#include <anbinding/Binding.h>
+#include <anbinding/Version.h>
 
-#include <eglbinding-aux/ValidVersions.h>
+#include <anbinding-aux/ValidVersions.h>
 
-#include "eglrevision.h"
+#include "anrevision.h"
 #include "Meta_Maps.h"
 
-using namespace egl;
+using namespace an;
 
 
 namespace 
@@ -23,21 +23,21 @@ namespace
 
 
 static const auto none = std::string{};
-static const auto noneVersion = eglbinding::Version{};
+static const auto noneVersion = anbinding::Version{};
 static const auto noneStringSet = std::set<std::string>{};
-static const auto noneExtensions = std::set<egl::EGLextension>{};
+static const auto noneExtensions = std::set<an::AnExtension>{};
 
 
 } // namespace
 
 
-namespace eglbinding { namespace aux
+namespace anbinding { namespace aux
 {
 
 
-int Meta::eglRevision()
+int Meta::anRevision()
 {
-    return EGL_REVISION;
+    return AN_REVISION;
 }
 
 size_t Meta::alphabeticalGroupIndex(const std::string & identifier, const std::uint8_t prefixLength)
@@ -60,9 +60,9 @@ size_t Meta::alphabeticalGroupIndex(const std::string & identifier, const std::u
     return index;
 }
 
-std::vector<EGLbitfield> Meta::bitfields()
+std::vector<AnBitfield> Meta::bitfields()
 {
-    auto bitfields = std::vector<EGLbitfield>{};
+    auto bitfields = std::vector<AnBitfield>{};
 
     for(const auto & map : Meta_BitfieldsByStringMaps)
     {
@@ -75,20 +75,20 @@ std::vector<EGLbitfield> Meta::bitfields()
     return bitfields;    
 }
 
-std::vector<EGLenum> Meta::enums()
+std::set<AnEnum> Meta::enums()
 {
-    auto enums = std::vector<EGLenum>{};
+    auto enums = std::vector<AnEnum>{};
 
     for (const auto & p : Meta_StringsByEnum)
     {
         enums.push_back(p.first);
     }
 
-    return enums;
+    return std::set<AnEnum>(enums.begin(), enums.end());
 }
 
 
-EGLextension Meta::getExtension(const std::string & glextension)
+AnExtension Meta::getExtension(const std::string & glextension)
 {
     const auto index = alphabeticalGroupIndex(glextension, 4);
     const auto & map = Meta_ExtensionsByStringMaps[index];
@@ -99,12 +99,12 @@ EGLextension Meta::getExtension(const std::string & glextension)
         return i->second;
     }
 
-    return EGLextension::UNKNOWN;
+    return AnExtension::UNKNOWN;
 }
 
-std::set<EGLextension> Meta::extensions()
+std::set<AnExtension> Meta::extensions()
 {
-    auto extensions = std::set<EGLextension>{};
+    auto extensions = std::set<AnExtension>{};
 
     for (const auto & m : Meta_ExtensionsByStringMaps)
     {
@@ -118,7 +118,7 @@ std::set<EGLextension> Meta::extensions()
 }
 
 
-const std::string & Meta::getString(const EGLBoolean & glboolean)
+const std::string & Meta::getString(const AnBool32 & glboolean)
 {
     const auto i = Meta_StringsByBoolean.find(glboolean);
 
@@ -130,7 +130,7 @@ const std::string & Meta::getString(const EGLBoolean & glboolean)
     return none;
 }
 
-const std::string & Meta::getString(const EGLenum glenum)
+const std::string & Meta::getString(const AnEnum glenum)
 {
     const auto i = Meta_StringsByEnum.find(glenum);
 
@@ -142,7 +142,7 @@ const std::string & Meta::getString(const EGLenum glenum)
     return none;
 }
 
-const std::string & Meta::getString(const EGLextension glextension)
+const std::string & Meta::getString(const AnExtension glextension)
 {
     const auto i = Meta_StringsByExtension.find(glextension);
 
@@ -154,7 +154,7 @@ const std::string & Meta::getString(const EGLextension glextension)
     return none;
 }
 
-EGLbitfield Meta::getBitfield(const std::string & glbitfield)
+AnBitfield Meta::getBitfield(const std::string & glbitfield)
 {
     const auto index = alphabeticalGroupIndex(glbitfield, 4);
     const auto & map = Meta_BitfieldsByStringMaps[index];
@@ -165,10 +165,10 @@ EGLbitfield Meta::getBitfield(const std::string & glbitfield)
         return i->second;
     }
 
-    return static_cast<EGLbitfield>(-1);
+    return static_cast<AnBitfield>(-1);
 }
 
-EGLenum Meta::getEnum(const std::string & glenum)
+AnEnum Meta::getEnum(const std::string & glenum)
 {
     const auto index = alphabeticalGroupIndex(glenum, 4);
     const auto & map = Meta_EnumsByStringMaps[index];
@@ -179,12 +179,12 @@ EGLenum Meta::getEnum(const std::string & glenum)
         return i->second;
     }
 
-    return static_cast<EGLenum>(static_cast<unsigned int>(-1));
+    return static_cast<AnEnum>(static_cast<unsigned int>(-1));
 }
 
-const std::set<EGLextension> Meta::extensions(const Version & version)
+const std::set<AnExtension> Meta::extensions(const Version & version)
 {
-    auto required = std::set<EGLextension>{};
+    auto required = std::set<AnExtension>{};
 
     if (version.isNull())
     {
@@ -207,7 +207,7 @@ const std::set<EGLextension> Meta::extensions(const Version & version)
     return required;
 }
 
-const std::set<EGLextension> Meta::extensions(const std::string & glfunction)
+const std::set<AnExtension> Meta::extensions(const std::string & glfunction)
 {
     const auto index = alphabeticalGroupIndex(glfunction, 3);
     const auto & map = Meta_ExtensionsByFunctionStringMaps[index];
@@ -251,7 +251,7 @@ const std::set<AbstractFunction *> Meta::functions(const Version & version)
     return requiredFunctions;
 }
 
-const std::set<AbstractFunction *> Meta::functions(const EGLextension extension)
+const std::set<AbstractFunction *> Meta::functions(const AnExtension extension)
 {
     const auto i = Meta_FunctionStringsByExtension.find(extension);
 
@@ -273,7 +273,7 @@ const std::set<AbstractFunction *> Meta::functions(const EGLextension extension)
     return requiredFunctions;
 }
 
-const Version & Meta::version(const EGLextension extension)
+const Version & Meta::version(const AnExtension extension)
 {
     const auto i = Meta_ReqVersionsByExtension.find(extension);
 
@@ -291,4 +291,4 @@ const std::set<Version> & Meta::versions()
 }
 
 
-} } // namespace eglbinding::aux
+} } // namespace anbinding::aux

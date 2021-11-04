@@ -12,6 +12,7 @@ namespace an10
 
 
 using an::_AnManagedObject;
+using an::AnBitfield;
 using an::AnBool32;
 using an::AnBounds;
 using an::AnDevice;

@@ -48,6 +48,7 @@ struct AnBounds {
 	float upper[3];
 };
 using AnStatusFunc = void (AN_APIENTRY *)(const char* messageText);
+enum class AnBitfield : unsigned int;
 
 
 } // namespace an
